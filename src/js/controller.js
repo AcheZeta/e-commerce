@@ -1,55 +1,55 @@
 library.controller('myController', {
-  login:()=>{
+  login: () => {
 
     (function () {
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          return true;
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      var uiConfig = {
+        callbacks: {
+          signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+            return true;
+          },
+          uiShown: function () {
+            document.getElementById('loader').style.display = 'none';
+          }
         },
-        uiShown: function() {
-          document.getElementById('loader').style.display = 'none';
+        signInFlow: 'popup',
+        signInSuccessUrl: 'index.html#/',
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        tosUrl: 'index.html#/',
+      };
+      ui.start('#firebaseui-auth-container', uiConfig);
+    })();
+
+    (function () {
+
+      const hideSignOut = document.getElementById('buttonSignOut');
+      var uid = null;
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          console.log(' User is signed in')
+          hideSignOut.classList.remove('hide')
+        } else {
+          //redirect to login page
+          uid = null;
+          console.log('no estás logueado')
         }
-      },
-      signInFlow: 'popup',
-      signInSuccessUrl: 'index.html#/',
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      ],
-      tosUrl: 'index.html#/',
-    };
-    ui.start('#firebaseui-auth-container', uiConfig);
-  })();
+      });
 
-  (function(){
 
-        const hideSignOut = document.getElementById('buttonSignOut');
-        var uid = null;
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                console.log(' User is signed in')
-                hideSignOut.classList.remove('hide')
-            } else{
-                //redirect to login page
-                uid= null;
-               console.log('no estás logueado')
-            }
-          });
-    
-    
-          // function logOut(){
-          //   firebase.auth().signOut();
-          //   window.location = 'index.html#/'
-          //   hideSignOut.classList.add('hide')
-           
-           
-          // }
-          // mainApp.logOut = logOut;
-          //  console.log('deslogueado')
-    }) ();
-    
+      // function logOut(){
+      //   firebase.auth().signOut();
+      //   window.location = 'index.html#/'
+      //   hideSignOut.classList.add('hide')
+
+
+      // }
+      // mainApp.logOut = logOut;
+      //  console.log('deslogueado')
+    })();
+
   },
 
   functionsHome: () => {
@@ -94,7 +94,7 @@ library.controller('myController', {
         <p class="black-text">${description}</p>
       </div>
       <div class="card-action">
-      <a class="waves-effect waves-light white btn"><img class="car" src="../src/assets/shopping-cart.svg"></a> 
+      <a href="#/shopping"><img class="car" src="../src/assets/shopping-cart.svg"></a> 
       </div>
     </div>
   </div>
