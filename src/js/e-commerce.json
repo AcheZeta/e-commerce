@@ -7,6 +7,7 @@
      "price": "$493.00",
      "description": "Juego de 3 cuencos de diferentes tamaños (10, 9 y 8cm)",
      "sku": "XC-017-27",
+     "id": "1",
      "categoria": "complementos",
      "tag": [
       {
@@ -24,6 +25,7 @@
      "price": "$242.71",
      "description": "Cuenco de cerámica con mortero de madera 8 x 10 cm",
      "sku": "XC-016-30",
+     "id": "2",
      "categoria": "complementos",
      "tag": [
       {
@@ -41,6 +43,7 @@
      "price": "$242.71",
      "description": "Cuenco de cerámica con mortero de madera 8 x 10 cm",
      "sku": "XC-016-7",
+     "id": "3",
      "categoria": "complementos",
      "tag": [
       {

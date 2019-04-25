@@ -1,4 +1,6 @@
 library.controller('myController', {
+
+
   login: () => {
 
     (function () {
@@ -54,12 +56,10 @@ library.controller('myController', {
 
   functionsHome: () => {
 
-
     const printTotalAccesories = document.getElementById('printTotalAccesories');
 
 
     const url = 'https://e-commerce-29db7.firebaseio.com/catalogo.json';
-    console.log(url)
     fetch(url)
       .then(response => response.json())
       .then(dataEtsy => {
@@ -81,7 +81,7 @@ library.controller('myController', {
 
 
 
-    const printData = (img, name, price, description) => {
+    const printData = (img, name, price, description, sku) => {
       let result = `  <div class="row">
   <div class="col s4 m4 l4">
     <div class="card">
@@ -94,11 +94,12 @@ library.controller('myController', {
         <p class="black-text">${description}</p>
       </div>
       <div class="card-action">
-      <a href="#/shopping"><img class="car" src="../src/assets/shopping-cart.svg"></a> 
+      <a href="#/shopping" id="${sku}" class="sku"><img class="car" src="../src/assets/shopping-cart.svg"></a> 
       </div>
     </div>
   </div>
 </div>`;
+
       printTotalAccesories.insertAdjacentHTML("beforeend", result);
     }
 
@@ -107,7 +108,8 @@ library.controller('myController', {
       let name = element.name;
       let price = element.price;
       let description = element.description;
-      printData(img, name, price, description)
+      let sku = element.sku;
+      printData(img, name, price, description, sku)
     })
 
     totalMezcaleros.forEach(element => {
@@ -115,7 +117,8 @@ library.controller('myController', {
       let name = element.name;
       let price = element.price;
       let description = element.description;
-      printData(img, name, price, description)
+      let sku = element.sku;
+      printData(img, name, price, description, sku)
     })
 
     totalGlasses.forEach(element => {
@@ -123,15 +126,21 @@ library.controller('myController', {
       let name = element.name;
       let price = element.price;
       let description = element.description;
-      printData(img, name, price, description)
+      let sku = element.sku;
+      printData(img, name, price, description, sku)
     })
-
-
   },
 
-  shoppingRedirec: () => {
-    alert("Holi SHopping")
-   }
+  printCart: () => {
+    const cart = document.getElementById('car');
+    let resultCart = `  
+    <ul class="collection">
+      <li class="collection-item">Cuenco con mortero de madera<br>$242.71</li>
+    </ul>
+    <a href="#/shop" class="button empty-cart-btn">Seguir Comprando</a> <br>
+  `;
 
+    cart.insertAdjacentHTML("beforeend", resultCart);
+  },
 
-})
+}) //Controller
