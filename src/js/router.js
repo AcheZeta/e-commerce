@@ -6,7 +6,7 @@ window.library.getId("view").routing()
   .route('/about-me', './views/about-me.html', 'myController', null, null)
   .route('/products', './views/products.html', 'myController', null, null)
   .route('/shopping', './views/shopping.html', 'myController', function() {
-    library.getCtrl().prueba()
+    library.getCtrl().shoppingRedirec()
   })
   .route('/login', './views/login.html', 'myController', function() {
     library.getCtrl().login()

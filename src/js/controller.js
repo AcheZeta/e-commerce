@@ -127,9 +127,11 @@ library.controller('myController', {
     })
 
 
-  }
+  },
 
-
+  shoppingRedirec: () => {
+    alert("Holi SHopping")
+   }
 
 
 })
